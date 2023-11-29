@@ -47,12 +47,13 @@ class Wiredash extends StatefulWidget {
     required this.projectId,
     required this.secret,
     @Deprecated('Since 1.0.0 the navigatorKey is not required anymore')
-    this.navigatorKey,
+        this.navigatorKey,
     this.options,
     this.theme,
     this.feedbackOptions,
     this.psOptions,
     this.padding,
+    this.api,
     this.collectMetaData,
     required this.child,
   });
@@ -69,6 +70,8 @@ class Wiredash extends StatefulWidget {
 
   /// Customize Wiredash's behaviour and language
   final WiredashOptionsData? options;
+
+  final WiredashApi? api;
 
   /// Adds additional metadata to feedback
   ///
@@ -200,7 +203,9 @@ class WiredashState extends State<Wiredash> {
     _services.addListener(_markNeedsBuild);
     _services.wiredashModel.addListener(_markNeedsBuild);
     _services.backdropController.addListener(_markNeedsBuild);
-
+    if (widget.api != null) {
+      _services.inject<WiredashApi>((_) => widget.api!);
+    }
     // start the sync engine
     unawaited(_services.syncEngine.onWiredashInit());
 
