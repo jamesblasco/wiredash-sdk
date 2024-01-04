@@ -141,10 +141,62 @@ Widget? _buildForegroundLayer(
     }
   }
 
-  if (stackChildren.isEmpty) {
-    return null;
-  }
+  stackChildren.add(
+    const Align(
+      alignment: Alignment.bottomCenter,
+      child: SafeArea(
+        child: AttributionBanner(),
+      ),
+    ),
+  );
   return Stack(children: stackChildren);
+}
+
+class AttributionBanner extends StatefulWidget {
+  const AttributionBanner({
+    super.key,
+  });
+
+  @override
+  State<AttributionBanner> createState() => _AttributionBannerState();
+}
+
+class _AttributionBannerState extends State<AttributionBanner> {
+  bool visible = true;
+  @override
+  void initState() {
+    Future.delayed(const Duration(seconds: 3)).then((value) {
+      if (mounted) {
+        setState(() {
+          visible = false;
+        });
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedOpacity(
+      duration: const Duration(milliseconds: 500),
+      opacity: visible ? 1 : 0,
+      child: Container(
+        decoration: BoxDecoration(
+          color: context.theme.surfaceColor,
+          borderRadius: BorderRadius.circular(6),
+        ),
+        padding: const EdgeInsets.symmetric(
+          vertical: 4,
+          horizontal: 12,
+        ),
+        child: Text(
+          'Built using Wiredash. https://wiredash.io',
+          style: context.text.caption.onSurface,
+          textAlign: TextAlign.center,
+        ),
+      ),
+    );
+  }
 }
 
 Widget? _buildBackgroundLayer(
