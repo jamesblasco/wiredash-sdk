@@ -2,6 +2,7 @@
 // ignore: deprecated_member_use
 import 'dart:ui' show Locale, SingletonFlutterWindow;
 
+import 'package:flutter/widgets.dart';
 import 'package:wiredash/src/_wiredash_internal.dart';
 // import a dart:html or dart:io version of `createDeviceInfoGenerator`
 // if non are available the stub is used
@@ -42,7 +43,7 @@ abstract class FlutterInfoCollector {
           windowLocales().map((it) => it.toLanguageTag()).toList(),
       viewPadding: WiredashWindowPadding.fromWindowPadding(window.padding),
       physicalSize: window.physicalSize,
-      physicalGeometry: window.physicalGeometry,
+      physicalGeometry: Rect.zero,
       pixelRatio: window.devicePixelRatio,
       textScaleFactor: window.textScaleFactor,
       viewInsets: WiredashWindowPadding.fromWindowPadding(window.viewInsets),
