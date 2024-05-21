@@ -31,7 +31,8 @@ class _NotAWidgetsAppState extends State<NotAWidgetsApp> {
     );
 
     // Allow inspection of widgets
-    if (kDebugMode && WidgetsApp.debugShowWidgetInspectorOverride) {
+    if (kDebugMode &&
+        WidgetsBinding.instance.debugShowWidgetInspectorOverride) {
       child = WidgetInspector(
         selectButtonBuilder: (BuildContext context, void Function() onPressed) {
           return FloatingActionButton(

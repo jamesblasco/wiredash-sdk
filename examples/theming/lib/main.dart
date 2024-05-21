@@ -196,7 +196,7 @@ class _DetailsPage extends StatelessWidget {
               Text(
                 'Details page #$index',
                 // ignore: deprecated_member_use
-                style: Theme.of(context).textTheme.headline6,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               SizedBox(height: 32),
               Text('Try navigating here in feedback mode.'),

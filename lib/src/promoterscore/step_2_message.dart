@@ -137,7 +137,7 @@ Widget? _getCounterText(
       return Colors.orange.withOpacity(0.8);
     }
     // ignore: deprecated_member_use
-    return Theme.of(context).errorColor;
+    return Theme.of(context).colorScheme.error;
     // replace with this when we drop support for Flutter v3.3.0-0.5.pre
     // return Theme.of(context).colorScheme.error;
   }
